@@ -4,12 +4,16 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vit_helpcenter/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final storedUsername = prefs.getString('username');
 
+  await FlutterDownloader.initialize(
+    debug: true,
+  );
   runApp(MyApp(isLoggedIn: storedUsername != null));
 }
 
